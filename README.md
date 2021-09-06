@@ -18,7 +18,7 @@ jobs:
         uses: ./.github-actions/steps/build
 ```
 
-## Workflow Template
+## Workflow Template (recursive submodules)
 ``` yaml
 name: Target
 on:
@@ -43,6 +43,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Setup
         uses: ./.github-actions/platforms/macos-apple-clang
       - name: Build
@@ -60,6 +62,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Setup
         uses: ./.github-actions/platforms/ubuntu-gcc
       - name: Build
@@ -77,6 +81,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Setup
         uses: ./.github-actions/platforms/windows-msvc
       - name: Build
