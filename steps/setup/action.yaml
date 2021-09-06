@@ -5,4 +5,4 @@ runs:
   steps:
     - name: Install Conan
       shell: bash
-      run: python3 -m pip conan
+      run: python3 -m pip install conan
