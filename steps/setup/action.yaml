@@ -1,0 +1,8 @@
+name: Setup
+description: Install dependencies
+runs:
+  using: composite
+  steps:
+    - name: Install Conan
+      shell: bash
+      run: python3 -m pip conan

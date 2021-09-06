@@ -1,0 +1,10 @@
+name: Setup
+description: Prepares development environment on macOS with Apple Clang
+runs:
+  using: composite
+  steps:
+    - name: Setup
+      env:
+        BUILD_COMPILER: apple-clang
+        BUILD_COMPILER_VERSION: '12.0'
+      uses: ./.github-actions/steps/setup
