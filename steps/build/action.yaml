@@ -11,6 +11,7 @@ runs:
     - name: Build
       uses: lukka/run-cmake@v3.4
       env:
+        CONAN_USER_HOME: ${{ github.workspace }}/..
         CONAN_REVISIONS_ENABLED: '1'
       with:
         buildDirectory: ${{ github.workspace }}/.build/${{ matrix.config }}-${{ matrix.platform.arch }}

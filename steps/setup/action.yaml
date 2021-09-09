@@ -6,3 +6,14 @@ runs:
     - name: Install Conan
       shell: bash
       run: python3 -m pip install conan
+    - name: Download Conan Cache
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{ env.CONAN_PACKAGES_ACCESS_TOKEN }}
+        repo: MikhailShostak/ConanPackages
+        workflow: Deploy.yml
+        name: ${{ github.job }}-${{ matrix.config }}-${{ matrix.platform.arch }}
+        path: ${{ github.workspace }}/../.conan/data
+    - name: Check Conan packages
+      shell: bash
+      run: conan search
