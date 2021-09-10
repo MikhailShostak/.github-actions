@@ -1,0 +1,16 @@
+name: Download Conan Cache
+description: Download dependencies
+runs:
+  using: composite
+  steps:
+    - name: Download Conan Cache
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{ env.CONAN_PACKAGES_ACCESS_TOKEN }}
+        repo: MikhailShostak/ConanPackages
+        workflow: Deploy.yml
+        name: ${{ github.job }}-${{ matrix.platform.arch }}-${{ matrix.config }}
+        path: ${{ github.workspace }}/../.conan/data
+    - name: Check Conan packages
+      shell: bash
+      run: conan search
