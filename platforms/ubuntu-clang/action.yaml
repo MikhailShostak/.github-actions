@@ -1,5 +1,5 @@
 name: Setup
-description: Prepares development environment on Ubuntu with GCC
+description: Prepares development environment on Ubuntu with Clang
 inputs:
   dependencies:
     description: Dependencies will be installed via apt-get

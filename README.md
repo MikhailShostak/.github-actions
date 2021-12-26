@@ -4,6 +4,7 @@
 Host    | Target         | Compiler
 --------|----------------|---------------
 macOS   | macOS x86_64   | Apple Clang 12
+Ubuntu  | Ubuntu x86_64  | Clang 11
 Ubuntu  | Ubuntu x86_64  | GCC 9
 Windows | Windows x86_64 | MSVC 16
 
@@ -49,7 +50,7 @@ jobs:
         uses: ./.github-actions/platforms/macos-apple-clang
       - name: Build
         uses: ./.github-actions/steps/build
-  ubuntu:
+  ubuntu-gcc:
     name: Ubuntu (GCC 9)
     runs-on: ubuntu-latest
     strategy:
@@ -67,6 +68,28 @@ jobs:
       - name: Setup
         uses: ./.github-actions/platforms/ubuntu-gcc
       - name: Build
+        uses: ./.github-actions/steps/build
+  ubuntu-clang:
+    name: Ubuntu (Clang 11)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform:
+          - arch: x86_64
+        config:
+          - Release
+          - Debug
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup
+        uses: ./.github-actions/platforms/ubuntu-clang
+      - name: Build
+        env:
+          CC: clang
+          CXX: clang++
         uses: ./.github-actions/steps/build
   windows:
     name: Windows (MSVC 16)
